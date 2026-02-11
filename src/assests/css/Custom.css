@@ -1,0 +1,62 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar .nav-link.active {
+  font-weight: 600;
+  color: #ffc107 !important;
+}
+
+/* About Css */
+section {
+  scroll-margin-top: 80px;
+}
+#about {
+  background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+}
+
+.progress {
+  height: 8px;
+  border-radius: 10px;
+}
+
+.progress-bar {
+  border-radius: 10px;
+}
+
+#about .lead {
+  font-weight: 400;
+  color: #444;
+}
+
+.rounded-4 {
+  border-radius: 20px;
+}
+
+
+/* Service Css */
+#services {
+  background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+}
+
+.service-card {
+  background: white;
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #000, #444);
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  font-size: 20px;
+}
