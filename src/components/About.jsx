@@ -1,22 +1,41 @@
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
 
 function About() {
 
   const [projects, setProjects] = useState(0);
+  const counterRef = useRef(null);
+  const isInView = useInView(counterRef, { once: true });
 
   useEffect(() => {
+    if (!isInView) return;
+
     let start = 0;
     const end = 75;
-    const interval = setInterval(() => {
-      start += 1;
-      setProjects(start);
-      if (start === end) clearInterval(interval);
-    }, 20);
-  }, []);
+    const duration = 1500;
+    const increment = end / (duration / 16);
+
+    const counter = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        start = end;
+        clearInterval(counter);
+      }
+      setProjects(Math.floor(start));
+    }, 16);
+
+    return () => clearInterval(counter);
+  }, [isInView]);
+
+  const skills = [
+    { name: "React", value: 88 },
+    { name: "Bootstrap", value: 90 },
+    { name: "UI/UX", value: 85 },
+    { name: "Performance", value: 92 }
+  ];
 
   return (
-    <section id="about" className="py-5 bg-light position-relative overflow-hidden">
+    <section id="about" className="py-5 position-relative overflow-hidden about-bg">
       <div className="container">
 
         <motion.div
@@ -25,7 +44,7 @@ function About() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-center fw-bold mb-5">
+          <h2 className="text-center fw-bold mb-5 display-6">
             About Our Company
           </h2>
         </motion.div>
@@ -40,23 +59,23 @@ function About() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <p className="lead">
+            <p className="lead text-muted">
               We build scalable, high-performance digital solutions
               focused on clean architecture and premium user experience.
             </p>
 
-            <div className="row text-center mt-4">
+            <div ref={counterRef} className="row text-center mt-4">
               <div className="col-4">
                 <h3 className="fw-bold">{projects}+</h3>
-                <p>Projects</p>
+                <p className="small text-muted">Projects</p>
               </div>
               <div className="col-4">
                 <h3 className="fw-bold">6+</h3>
-                <p>Years</p>
+                <p className="small text-muted">Years</p>
               </div>
               <div className="col-4">
                 <h3 className="fw-bold">98%</h3>
-                <p>Retention</p>
+                <p className="small text-muted">Retention</p>
               </div>
             </div>
           </motion.div>
@@ -69,44 +88,46 @@ function About() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-
-            {["React", "Bootstrap", "UI/UX", "Performance"].map((skill, i) => (
-              <div key={i} className="mb-3">
-                <div className="d-flex justify-content-between">
-                  <span>{skill}</span>
-                  <span>{85 + i * 3}%</span>
+            {skills.map((skill, i) => (
+              <div key={i} className="mb-4">
+                <div className="d-flex justify-content-between mb-1">
+                  <span>{skill.name}</span>
+                  <span>{skill.value}%</span>
                 </div>
-                <div className="progress">
+
+                <div className="progress custom-progress">
                   <motion.div
-                    className="progress-bar bg-dark"
+                    className="progress-bar gradient-bar"
                     initial={{ width: 0 }}
-                    whileInView={{ width: `${85 + i * 3}%` }}
+                    whileInView={{ width: `${skill.value}%` }}
                     transition={{ duration: 1.5 }}
                     viewport={{ once: true }}
                   />
                 </div>
               </div>
             ))}
-
           </motion.div>
         </div>
 
-        {/* CORE VALUES SECTION */}
+        {/* CORE VALUES */}
         <motion.div
           className="row mt-5"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
           {["Innovation", "Quality", "Integrity"].map((value, i) => (
-            <div className="col-md-4 mb-3" key={i}>
-              <div className="p-4 bg-white shadow-sm rounded-4 text-center">
+            <div className="col-md-4 mb-4" key={i}>
+              <motion.div
+                whileHover={{ y: -8 }}
+                className="p-4 glass-card text-center"
+              >
                 <h5 className="fw-bold">{value}</h5>
-                <p>
+                <p className="text-muted small">
                   We focus on delivering reliable and modern digital solutions.
                 </p>
-              </div>
+              </motion.div>
             </div>
           ))}
         </motion.div>

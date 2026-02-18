@@ -60,3 +60,125 @@ section {
   border-radius: 50%;
   font-size: 20px;
 }
+
+
+.transition {
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: #0d6efd;
+  transition: 0.3s;
+}
+
+.custom-link:hover::after {
+  width: 100%;
+}
+
+.active-link {
+  color: #0d6efd !important;
+  font-weight: 600;
+}
+
+/** About Us **/
+.about-section {
+  background: linear-gradient(135deg, #f8f9fa, #eef1f4);
+}
+
+.custom-progress {
+  height: 8px;
+  background-color: #e9ecef;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.custom-bar {
+  background: linear-gradient(90deg, #111, #444);
+  border-radius: 20px;
+}
+
+.core-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.core-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/** Hero.css  **/
+.hero-section {
+  height: 100vh;
+  background: linear-gradient(135deg, #111, #222, #333);
+  background-size: 300% 300%;
+  animation: gradientMove 8s ease infinite;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-btn-primary {
+  transition: 0.3s ease;
+}
+
+.hero-btn-primary:hover {
+  transform: translateY(-3px);
+}
+
+.hero-btn-secondary {
+  transition: 0.3s ease;
+}
+
+.hero-btn-secondary:hover {
+  background: #fff;
+  color: #111 !important;
+}
+
+/* Floating Shapes */
+
+.hero-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  animation: float 6s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 250px;
+  height: 250px;
+  top: 10%;
+  left: -80px;
+}
+
+.shape-2 {
+  width: 300px;
+  height: 300px;
+  bottom: -100px;
+  right: -100px;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
