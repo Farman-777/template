@@ -1,19 +1,26 @@
 import { motion } from "framer-motion";
 import "../assests/css/Custom.css";
+import { Typewriter } from "react-simple-typewriter";
 
 function Hero() {
   return (
     <section id="hero" className="hero-section d-flex align-items-center">
       <div className="container text-center hero-content">
 
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="display-3 fw-bold"
-        >
-          We Build Modern Websites
-        </motion.h1>
+        <h1 className="display-3 fw-bold">
+          We Build{" "}
+          <span className="hero-highlight">
+            <Typewriter
+              words={["Modern Websites", "Scalable Apps", "High Performance Systems"]}
+              loop
+              cursor
+              cursorStyle="|"
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1500}
+            />
+          </span>
+        </h1>
 
         <motion.p
           initial={{ opacity: 0, y: 40 }}
